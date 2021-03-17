@@ -1,14 +1,11 @@
 import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
-    /* width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; */
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 2rem;
-    margin-top: -8rem;
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2rem;
+  margin-top: -8rem;
+  width:100%;
 `
 
 export const Title = styled.p`
@@ -19,13 +16,18 @@ export const Title = styled.p`
 `
 
 export const Card = styled.div<{ isTotal: boolean }>`
-${({ isTotal, theme: { colors } }) => css`
-  background: ${colors.shape};
-  padding:  1.5rem 2rem;
-  border-radius: 0.5rem;
-  ${isTotal && css`
-    background: ${colors.green};
-  `}
+  ${({ isTotal, theme: { colors } }) => css`
+    background: ${colors.shape};
+    padding:  1.5rem 2rem;
+    border-radius: 0.5rem;
+    transition: 180ms ease-in-out;
+    ${isTotal && css`
+      background: ${colors.green};
+    `}
+    &:hover{
+      filter: brightness(1.12);
+      transform: scale(1.01);
+    }
   `}
 `
 

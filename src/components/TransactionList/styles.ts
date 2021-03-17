@@ -3,17 +3,9 @@ import styled, { css } from 'styled-components'
 export const Container = styled.div`
   ${({ theme: { colors } }) => css`
     width: 100%;
-    /*height: 100%;
-    background-color: ${colors.background};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
     margin-top: 4rem;
   `}
 `
-
-
 export const Table = styled.table`
   width: 100%;
   border-spacing: 0 0.5rem;
@@ -21,7 +13,13 @@ export const Table = styled.table`
 
 export const Thead = styled.thead``
 
-export const TableRow = styled.tr``
+export const TableRow = styled.tr`
+  transition: 180ms ease-in-out;
+  &:hover{
+    filter: brightness(1.12);
+    transform: scale(1.01);
+  }
+`
 
 export const TableHeader = styled.th`
 ${({ theme: { colors } }) => css`
@@ -41,6 +39,7 @@ ${({ isPositive, isNegative, theme: { colors } }) => css`
     background-color: ${colors.shape};
     padding: 1rem 2rem;
     border:0;
+
     &:first-child{
       border-top-left-radius: 0.5rem;
       color: ${colors.textTitle};
