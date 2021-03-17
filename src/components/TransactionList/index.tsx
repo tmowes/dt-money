@@ -1,8 +1,19 @@
+import { useEffect, useState } from 'react'
+import api from '../../services/api'
 import * as S from './styles'
-import { TransactionListProps } from './types'
+import { Transaction, TransactionListProps } from './types'
 
 const TransactionList = (props: TransactionListProps) => {
   // const {} = props
+  const [transactions, setTransactions] = useState<Transaction[]>([])
+
+  useEffect(() => {
+    const loadTransactions = async ()=>{
+      const{data} = await api.get('/transactions')
+      setTransactions(data)
+    }    
+    loadTransactions ()
+  }, [])
   return (
     <S.Container>
       <S.Table>
@@ -15,18 +26,14 @@ const TransactionList = (props: TransactionListProps) => {
           </S.TableRow>
         </S.Thead>
         <S.Tbody>
+            {transactions.map(transaction=>(
           <S.TableRow>
-            <S.TableData>Programa</S.TableData>
-            <S.TableData isPositive={true}>R$6900,00</S.TableData>
-            <S.TableData>Lazer</S.TableData>
-            <S.TableData>12/03/2021</S.TableData>
+              <S.TableData>{transaction.title}</S.TableData>
+            <S.TableData isPositive={transaction.type==='deposit'}>{transaction.amount}</S.TableData>
+            <S.TableData>{transaction.category}</S.TableData>
+            <S.TableData>{transaction.createdAt}</S.TableData>
           </S.TableRow>
-          <S.TableRow>
-            <S.TableData>Hamburger</S.TableData>
-            <S.TableData isNegative={true}>-R$69,00</S.TableData>
-            <S.TableData>Comida</S.TableData>
-            <S.TableData>12/03/2021</S.TableData>
-          </S.TableRow>
+            ))}
         </S.Tbody>
       </S.Table>
     </S.Container>
