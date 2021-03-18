@@ -96,5 +96,42 @@ ${({ theme: { colors } }) => css`
     text-align: left;
     padding: 0;
   }
+  .react-modal-overlay {
+    background: #12121480;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .react-modal-content {
+    width: 100%;
+    max-width: 576px;
+    background: ${colors.shape};
+    border: none;
+    border-radius: 0.5rem;
+    padding: 3rem;
+    position: relative;
+  }
+  .react-modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    border: 0;
+    background: transparent;
+    border-radius: 0.5rem;
+    transition: 180ms ease-in-out;
+    &:hover {
+      filter: brightness(1.2);
+      transform: scale(1.05);
+    }
+    &:active {
+      transform: scale(0.95);
+      filter: brightness(0.85);
+    }
+  }
 `}
 `
